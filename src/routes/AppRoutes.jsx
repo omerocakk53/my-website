@@ -4,6 +4,7 @@ import AdminLayout from "../pages/admin/AdminLayout";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import AdminRequest from "../pages/admin/AdminRequest";
 import AdminDetail from "../pages/admin/AdminDetail";
+import Users from "../pages/admin/Users";
 import Login from "../pages/public/Login";
 import HomePage from "../pages/public/HomePage";
 import RequireAuth from "../components/RequireAuth";
@@ -20,6 +21,7 @@ const AppRoutes = () => {
           <Route index element={<AdminDashboard />} />
           <Route path="new-scrape" element={<AdminRequest />} />
           <Route path="file/:filename" element={<AdminDetail />} />
+          <Route path="users" element={<Users />} />
         </Route>
       </Route>
     </Routes>

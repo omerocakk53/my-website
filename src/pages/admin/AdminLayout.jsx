@@ -4,13 +4,21 @@ import { LayoutDashboard, PlusCircle, LogOut, Menu } from "lucide-react";
 import { Button } from "@/admin/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/admin/components/ui/sheet";
 
-const SidebarContent = ({ isActive }) => (
+import { useAuth } from "../../context/AuthContext";
+import { Users } from "lucide-react";
+
+const SidebarContent = ({ isActive, user }) => (
   <div className="flex flex-col h-full bg-card">
     <div className="p-6 border-b border-border">
       <h1 className="text-2xl font-bold text-foreground tracking-tight">
         Admin Panel
       </h1>
       <p className="text-xs text-muted-foreground mt-1">Scraping Manager</p>
+      {user && (
+        <div className="mt-2 text-xs px-2 py-1 bg-primary/10 text-primary rounded inline-block font-semibold">
+          {user.role === "superadmin" ? "Super Admin" : "Admin"}
+        </div>
+      )}
     </div>
 
     <nav className="flex-1 p-4 space-y-2">
@@ -33,6 +41,18 @@ const SidebarContent = ({ isActive }) => (
           <span>Yeni Tarama</span>
         </Button>
       </Link>
+
+      {user?.role === "superadmin" && (
+        <Link to="/admin/users" className="block">
+          <Button
+            variant={isActive("/admin/users") ? "secondary" : "ghost"}
+            className="w-full justify-start gap-3 h-11"
+          >
+            <Users size={20} />
+            <span>Kullanıcılar</span>
+          </Button>
+        </Link>
+      )}
     </nav>
 
     <div className="p-4 border-t border-border">
@@ -50,6 +70,7 @@ const SidebarContent = ({ isActive }) => (
 );
 
 const AdminLayout = () => {
+  const { user } = useAuth();
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
 
@@ -57,7 +78,7 @@ const AdminLayout = () => {
     <div className="flex h-screen bg-background text-foreground font-sans">
       {/* Desktop Sidebar */}
       <div className="hidden md:flex w-64 bg-card border-r border-border flex-col">
-        <SidebarContent isActive={isActive} />
+        <SidebarContent isActive={isActive} user={user} />
       </div>
 
       {/* Main Content */}
@@ -75,7 +96,7 @@ const AdminLayout = () => {
                 side="left"
                 className="p-0 border-r border-border w-64"
               >
-                <SidebarContent isActive={isActive} />
+                <SidebarContent isActive={isActive} user={user} />
               </SheetContent>
             </Sheet>
             <span className="font-bold text-lg">Admin Panel</span>
