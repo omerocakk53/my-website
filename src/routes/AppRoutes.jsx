@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import AdminLayout from "../pages/admin/AdminLayout";
 import AdminDashboard from "../pages/admin/AdminDashboard";
-import AdminRequest from "../pages/admin/AdminRequest";
+import YoutubeApi from "../pages/admin/YoutubeApi";
 import AdminDetail from "../pages/admin/AdminDetail";
 import Users from "../pages/admin/Users";
 import Login from "../pages/public/Login";
@@ -19,7 +19,7 @@ const AppRoutes = () => {
       <Route element={<RequireAuth />}>
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />
-          <Route path="new-scrape" element={<AdminRequest />} />
+          <Route path="youtube-api" element={<YoutubeApi />} />
           <Route path="file/:filename" element={<AdminDetail />} />
           <Route path="users" element={<Users />} />
         </Route>

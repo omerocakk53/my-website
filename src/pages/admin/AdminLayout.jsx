@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { LayoutDashboard, PlusCircle, LogOut, Menu } from "lucide-react";
+import { LayoutDashboard, LogOut, Menu, Youtube } from "lucide-react";
 import { Button } from "@/admin/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/admin/components/ui/sheet";
 
@@ -32,13 +32,13 @@ const SidebarContent = ({ isActive, user }) => (
         </Button>
       </Link>
 
-      <Link to="/admin/new-scrape" className="block">
+      <Link to="/admin/youtube-api" className="block">
         <Button
-          variant={isActive("/admin/new-scrape") ? "secondary" : "ghost"}
+          variant={isActive("/admin/youtube-api") ? "secondary" : "ghost"}
           className="w-full justify-start gap-3 h-11"
         >
-          <PlusCircle size={20} />
-          <span>Yeni Tarama</span>
+          <Youtube size={20} />
+          <span>Youtube API</span>
         </Button>
       </Link>
 
