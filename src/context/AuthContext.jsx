@@ -23,6 +23,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.log("Not authenticated");
       localStorage.removeItem("accessToken");
+      return error;
     } finally {
       setLoading(false);
     }
@@ -63,4 +64,5 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);
