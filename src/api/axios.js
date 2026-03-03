@@ -33,7 +33,7 @@ api.interceptors.response.use(
       try {
         // Refresh token endpoint'ine istek at
         const response = await axios.post(
-          "http://localhost:3000/api/auth/refresh-token",
+          "/api/auth/refresh-token",
           {},
           {
             withCredentials: true,
